@@ -9,34 +9,26 @@ Author URI: localhost/wordpress
 add_shortcode('PhilaAlertsWidget', 'philaAlertsWidget_handler');
 
 function philaAlertsWidget_handler(){
-    $message = <<<EOM
+$topOfMessage = <<<EOM
 
 <head>
-<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-	function GetRecent() {
-		var recentAPI = "http://www.publicstuff.com/api/open311/services.json?jurisdiction_id=philadelphia-pa";
-		
-		$.ajax({
-                url:        recentAPI,
-                dataType:   "json", // <== JSON-P request
-                success:    function(data){
-					$("#Phila311RecentList").empty();
-					var i = 0;
-					while(i < 3)
-					{
-						var newEntry = "<p><strong>" + data[i].group + ": " + data[i].service_name + "</p></strong><p>" + data[i].description + "</p>";
-						$("#Phila311RecentList").append(newEntry);
-						i++;
-					}
-                }
-        });
+	function ShowDate() {
+		var currentDate = new Date()
+		var day = currentDate.getDate()
+		var month = currentDate.getMonth() + 1
+		var year = currentDate.getFullYear()
+		document.getElementById('PhilaAlertsDateBlock').innerHTML = "<b>" + day + "/" + month + "/" + year + "</b>";
 	}
 </script>
 
 <script type="text/javascript">
     $(document).ready(function () {	
-		GetRecent();
+		ShowDate();
     });
 </script>
 
@@ -44,40 +36,90 @@ function philaAlertsWidget_handler(){
 
 <style>
 
-#Phila311LinkBlock{
+.PhilaAlertIconActiveColor{
+color: red;
+font-size: 200%;
+}
+
+.PhilaAlertIconInactiveColor{
+color: green;
+font-size: 200%;
+}
+
+#PhilaAlertsDateBlock{
 float:left;
 }
 
-#Phila311MapBlock{
-float:left;
-}
-
-#Phila311RecentBlock{
-float:left;
+#PhilaAlertsIconBlock{
+float:right;
 }
 
 </style>
 
-<div id="Phila311Widget">
-	<span id="Phila311MainWindow">
-		<h1>Philly 311</h1>
-		<div id="Phila311LinkBlock">
-		<p><a href="http://www.publicstuff.com/pa/philadelphia-pa/report-issues">Submit New Request</a></p>
-		<p><a href="http://www.publicstuff.com/pa/philadelphia-pa/issues">Track Request</a></p>
-		<p><a href="http://www.publicstuff.com/pa/philadelphia-pa/newsfeed">News</a></p>
-		</div>
-		<div id="Phila311RecentBlock">
-			<h4>Recent Requests</h4>
-			<ul id="Phila311RecentList">
-			</ul>
-		</div>
-	</span>
-</div>
-
+<body>
 
 EOM;
 
-return $message;
+$calculatedContent = "<div id=\"PhilaAlertsWidget\">";
+$calculatedContent .= "	<span id=\"PhilaAlertsMainWindow\">";
+$calculatedContent .= "<div id =\"PhilaAlertsDateBlock\">DateTime</div>";
+$calculatedContent .= "<div id=\"PhilaAlertsIconsBlock\">";
+
+if (CheckForActiveAlerts("weatheralerts")) {
+$calculatedContent .= "<a href=\"http://alpha.phila.gov/WeatherAlerts\"><span class=\"glyphicon glyphicon-cloud PhilaAlertIconActiveColor\"></span></a>";
+}
+else{
+$calculatedContent .= "<a href=\"http://alpha.phila.gov/WeatherAlerts\"><span class=\"glyphicon glyphicon-cloud PhilaAlertIconInactiveColor\"></span></a>";
+}
+
+if (CheckForActiveAlerts("transitalerts")) {
+$calculatedContent .= "<a href=\"http://alpha.phila.gov/TransitAlerts\"><span class=\"glyphicon glyphicon-plane PhilaAlertIconActiveColor\"></span></a>";
+}
+else{
+$calculatedContent .= "<a href=\"http://alpha.phila.gov/TransitAlerts\"><span class=\"glyphicon glyphicon-plane PhilaAlertIconInactiveColor\"></span></a>";
+}
+
+if (CheckForActiveAlerts("trashalerts")) {
+$calculatedContent .= "<a href=\"http://alpha.phila.gov/CollectionAlerts\"><span class=\"glyphicon glyphicon-trash PhilaAlertIconActiveColor\"></span></a>";
+}
+else{
+$calculatedContent .= "<a href=\"http://alpha.phila.gov/CollectionAlerts\"><span class=\"glyphicon glyphicon-trash PhilaAlertIconInactiveColor\"></span></a>";
+}
+
+if (CheckForActiveAlerts("streetalerts")) {
+$calculatedContent .= "<a href=\"http://alpha.phila.gov/ClosureAlerts\"><span class=\"glyphicon glyphicon-road PhilaAlertIconActiveColor\"></span></a>";
+}
+else{
+$calculatedContent .= "<a href=\"http://alpha.phila.gov/ClosureAlerts\"><span class=\"glyphicon glyphicon-road PhilaAlertIconInactiveColor\"></span></a>";
+}
+
+$calculatedContent .= "</div>";
+$calculatedContent .= "	</span>";
+$calculatedContent .= "</div>";
+$calculatedContent .= "</body>";
+
+$code = $topOfMessage;
+$code .= $calculatedContent;
+return $code;
+}
+
+function CheckForActiveAlerts($tagName) {
+	$activeAlert = False;
+	
+	echo $activeAlert;
+	$args=array(
+      'tag' => $tagName,
+	  'category' => 'Display on Front Page',
+      'showposts'=>5,
+      'caller_get_posts'=>1
+    );
+    $my_query = new WP_Query($args);
+	
+    if( $my_query->have_posts() ) {
+		$activeAlert = True;
+	}
+	
+	return $activeAlert;
 }
 
 function philaAlertsWidget($args, $instance) { // widget sidebar output
