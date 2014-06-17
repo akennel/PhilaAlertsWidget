@@ -66,31 +66,31 @@ $calculatedContent .= "<div id =\"PhilaAlertsDateBlock\">DateTime</div>";
 $calculatedContent .= "<div id=\"PhilaAlertsIconsBlock\">";
 
 if (CheckForActiveAlerts("weatheralerts")) {
-$calculatedContent .= "<a href=\"http://alpha.phila.gov/Weather-Alerts"><span class=\"glyphicon glyphicon-cloud PhilaAlertIconActiveColor\"></span></a>";
+$calculatedContent .= "<a href=\"http://alpha.phila.gov/Weather-Alerts\"><span class=\"glyphicon glyphicon-cloud PhilaAlertIconActiveColor\"></span></a>";
 }
 else{
-$calculatedContent .= "<a href=\"http://alpha.phila.gov/Weather-Alerts"><span class=\"glyphicon glyphicon-cloud PhilaAlertIconInactiveColor\"></span></a>";
+$calculatedContent .= "<a href=\"http://alpha.phila.gov/Weather-Alerts\"><span class=\"glyphicon glyphicon-cloud PhilaAlertIconInactiveColor\"></span></a>";
 }
 
 if (CheckForActiveAlerts("transitalerts")) {
-$calculatedContent .= "<a href=\"http://alpha.phila.gov/Transit-Alerts"><span class=\"glyphicon glyphicon-plane PhilaAlertIconActiveColor\"></span></a>";
+$calculatedContent .= "<a href=\"http://alpha.phila.gov/Transit-Alerts\"><span class=\"glyphicon glyphicon-plane PhilaAlertIconActiveColor\"></span></a>";
 }
 else{
-$calculatedContent .= "<a href=\"http://alpha.phila.gov/Transit-Alerts"><span class=\"glyphicon glyphicon-plane PhilaAlertIconInactiveColor\"></span></a>";
+$calculatedContent .= "<a href=\"http://alpha.phila.gov/Transit-Alerts\"><span class=\"glyphicon glyphicon-plane PhilaAlertIconInactiveColor\"></span></a>";
 }
 
 if (CheckForActiveAlerts("trashalerts")) {
-$calculatedContent .= "<a href=\"http://alpha.phila.gov/Collection-Alerts"><span class=\"glyphicon glyphicon-trash PhilaAlertIconActiveColor\"></span></a>";
+$calculatedContent .= "<a href=\"http://alpha.phila.gov/Collection-Alerts\"><span class=\"glyphicon glyphicon-trash PhilaAlertIconActiveColor\"></span></a>";
 }
 else{
-$calculatedContent .= "<a href=\"http://alpha.phila.gov/Collection-Alerts"><span class=\"glyphicon glyphicon-trash PhilaAlertIconInactiveColor\"></span></a>";
+$calculatedContent .= "<a href=\"http://alpha.phila.gov/Collection-Alerts\"><span class=\"glyphicon glyphicon-trash PhilaAlertIconInactiveColor\"></span></a>";
 }
 
 if (CheckForActiveAlerts("streetalerts")) {
-$calculatedContent .= "<a href=\"http://alpha.phila.gov/Closure-Alerts"><span class=\"glyphicon glyphicon-road PhilaAlertIconActiveColor\"></span></a>";
+$calculatedContent .= "<a href=\"http://alpha.phila.gov/Closure-Alerts\"><span class=\"glyphicon glyphicon-road PhilaAlertIconActiveColor\"></span></a>";
 }
 else{
-$calculatedContent .= "<a href=\"http://alpha.phila.gov/Closure-Alerts"><span class=\"glyphicon glyphicon-road PhilaAlertIconInactiveColor\"></span></a>";
+$calculatedContent .= "<a href=\"http://alpha.phila.gov/Closure-Alerts\"><span class=\"glyphicon glyphicon-road PhilaAlertIconInactiveColor\"></span></a>";
 }
 
 $calculatedContent .= "</div>";
