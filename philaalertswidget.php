@@ -65,28 +65,28 @@ $calculatedContent .= "	<span id=\"PhilaAlertsMainWindow\">";
 $calculatedContent .= "<div id =\"PhilaAlertsDateBlock\">DateTime</div>";
 $calculatedContent .= "<div id=\"PhilaAlertsIconsBlock\">";
 
-if (CheckForActiveAlerts("weatheralerts")) {
+if (CheckForActiveAlerts("Weather Alert")) {
 $calculatedContent .= "<a href=\"http://alpha.phila.gov/Weather-Alerts\"><span class=\"glyphicon glyphicon-cloud PhilaAlertIconActiveColor\"></span></a>";
 }
 else{
 $calculatedContent .= "<a href=\"http://alpha.phila.gov/Weather-Alerts\"><span class=\"glyphicon glyphicon-cloud PhilaAlertIconInactiveColor\"></span></a>";
 }
 
-if (CheckForActiveAlerts("transitalerts")) {
+if (CheckForActiveAlerts("Transit Alert")) {
 $calculatedContent .= "<a href=\"http://alpha.phila.gov/Transit-Alerts\"><span class=\"glyphicon glyphicon-plane PhilaAlertIconActiveColor\"></span></a>";
 }
 else{
 $calculatedContent .= "<a href=\"http://alpha.phila.gov/Transit-Alerts\"><span class=\"glyphicon glyphicon-plane PhilaAlertIconInactiveColor\"></span></a>";
 }
 
-if (CheckForActiveAlerts("trashalerts")) {
+if (CheckForActiveAlerts("Trash Collection Alert")) {
 $calculatedContent .= "<a href=\"http://alpha.phila.gov/Collection-Alerts\"><span class=\"glyphicon glyphicon-trash PhilaAlertIconActiveColor\"></span></a>";
 }
 else{
 $calculatedContent .= "<a href=\"http://alpha.phila.gov/Collection-Alerts\"><span class=\"glyphicon glyphicon-trash PhilaAlertIconInactiveColor\"></span></a>";
 }
 
-if (CheckForActiveAlerts("streetalerts")) {
+if (CheckForActiveAlerts("Street Closure Alert")) {
 $calculatedContent .= "<a href=\"http://alpha.phila.gov/Closure-Alerts\"><span class=\"glyphicon glyphicon-road PhilaAlertIconActiveColor\"></span></a>";
 }
 else{
@@ -106,16 +106,12 @@ return $code;
 function CheckForActiveAlerts($tagName) {
 	$activeAlert = False;
 	
-	echo $activeAlert;
-	$args=array(
-      'tag' => $tagName,
-	  'category' => 'Display on Front Page',
-      'showposts'=>5,
-      'caller_get_posts'=>1
-    );
-    $my_query = new WP_Query($args);
+	$frontPageCategory_id = get_cat_ID('Display on Front Page');
+	$tagCategory_id = get_cat_ID($tagName);
 	
+	$my_query = new WP_Query( array( 'category__and' => array( $frontPageCategory_id, $tagCategory_id ) ) );
     if( $my_query->have_posts() ) {
+		
 		$activeAlert = True;
 	}
 	
