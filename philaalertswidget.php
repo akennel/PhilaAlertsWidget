@@ -17,18 +17,53 @@ $topOfMessage = <<<EOM
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-	function ShowDate() {
-		var currentDate = new Date()
-		var day = currentDate.getDate()
-		var month = currentDate.getMonth() + 1
-		var year = currentDate.getFullYear()
-		document.getElementById('PhilaAlertsDateBlock').innerHTML = "<b>" + day + "/" + month + "/" + year + "</b>";
+   function updateClock(){
+        var currentTime = new Date();
+        var hours = currentTime.getHours();
+        var minutes = currentTime.getMinutes();
+
+        //add 0 to beginning of minutes/seconds
+        // ? - returns value before before : if true or after : if false (if statement shorthand)
+        minutes = ( minutes < 10 ? "0" : "" ) + minutes;
+
+        var timeOfDay = ( hours < 12 ) ? "AM" : "PM";
+        //make 12 hour day
+        hours = ( hours > 12 ) ? hours - 12 : hours;
+        //show "12" instead of "0" at midnight
+        hours = ( hours == 0 ) ? 12 : hours;
+
+        //stick it all together
+        var currentTimeString = hours + ":" + minutes + " " + timeOfDay;
+
+        //add the clock to the ID this needs the &nbsp; to work - not sure why
+        document.getElementById("clock").firstChild.nodeValue = currentTimeString;
 	}
 </script>
-
 <script type="text/javascript">
-    $(document).ready(function () {	
-		ShowDate();
+   function updateDate(){
+		var currentTime = new Date();
+        var month_name=new Array(12);
+         month_name[0]="January"
+         month_name[1]="February"
+         month_name[2]="March"
+         month_name[3]="April"
+         month_name[4]="May"
+         month_name[5]="June"
+         month_name[6]="July"
+         month_name[7]="August"
+         month_name[8]="September"
+         month_name[9]="October"
+         month_name[10]="November"
+         month_name[11]="December";
+		 var currentDateString = month_name[currentTime.getMonth()]+" "+currentTime.getDate()+", "+currentTime.getFullYear();
+		 var dateNode = document.getElementById("date");
+		 document.getElementById("date").firstChild.nodeValue = currentDateString;
+   }
+</script>   
+<script type="text/javascript">
+jQuery(document).ready(function($) {	
+		updateDate();
+		setInterval('updateClock()', 1000);
     });
 </script>
 
@@ -61,8 +96,12 @@ float:right;
 EOM;
 
 $calculatedContent = "<div id=\"PhilaAlertsWidget\">";
-$calculatedContent .= "	<span id=\"PhilaAlertsMainWindow\">";
-$calculatedContent .= "<div id =\"PhilaAlertsDateBlock\">DateTime</div>";
+$calculatedContent .= "<span id=\"PhilaAlertsMainWindow\">";
+$calculatedContent .= "<div id=\"PhilaAlertsDateTimeBlock\">";
+$calculatedContent .= "<span id=\"date\">Date</span>";
+$calculatedContent .= "<br>";
+$calculatedContent .= "<span id=\"clock\">Time</span>";
+$calculatedContent .= "</div>";
 $calculatedContent .= "<div id=\"PhilaAlertsIconsBlock\">";
 
 if (CheckForActiveAlerts("Weather Alert")) {
@@ -93,7 +132,7 @@ else{
 $calculatedContent .= "<a href=\"http://www.phila.gov/MDO/SpecialEvents/Pages/StreetClosures.aspx\"><span class=\"glyphicon glyphicon-road PhilaAlertIconInactiveColor\"></span></a>";
 }
 
-$calculatedContent .= "</div>";
+//$calculatedContent .= "</div>";
 $calculatedContent .= "	</span>";
 $calculatedContent .= "</div>";
 $calculatedContent .= "</body>";
