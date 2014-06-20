@@ -14,8 +14,7 @@ $topOfMessage = <<<EOM
 <head>
 <!-- Latest compiled and minified CSS -->
 <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
 <script type="text/javascript">
    function updateClock(){
         var currentTime = new Date();
@@ -132,7 +131,7 @@ else{
 $calculatedContent .= "<a href=\"http://www.phila.gov/MDO/SpecialEvents/Pages/StreetClosures.aspx\"><span class=\"glyphicon glyphicon-road PhilaAlertIconInactiveColor\"></span></a>";
 }
 
-//$calculatedContent .= "</div>";
+$calculatedContent .= "</div>";
 $calculatedContent .= "	</span>";
 $calculatedContent .= "</div>";
 $calculatedContent .= "</body>";
