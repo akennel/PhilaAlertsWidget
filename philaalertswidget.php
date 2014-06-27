@@ -10,11 +10,6 @@ add_shortcode('PhilaAlertsWidget', 'philaAlertsWidget_handler');
 
 function philaAlertsWidget_handler(){
 $topOfMessage = <<<EOM
-
-<head>
-<!-- Latest compiled and minified CSS -->
-<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-
 <script type="text/javascript">
    function updateClock(){
         var currentTime = new Date();
@@ -65,9 +60,6 @@ jQuery(document).ready(function($) {
 		setInterval('updateClock()', 1000);
     });
 </script>
-
-</head>
-
 <style>
 
 .PhilaAlertIconActiveColor{
@@ -97,9 +89,8 @@ EOM;
 $calculatedContent = "<div id=\"PhilaAlertsWidget\">";
 $calculatedContent .= "<span id=\"PhilaAlertsMainWindow\">";
 $calculatedContent .= "<div id=\"PhilaAlertsDateTimeBlock\">";
+$calculatedContent .= "<span id=\"clock\">Time</span> - ";
 $calculatedContent .= "<span id=\"date\">Date</span>";
-$calculatedContent .= "<br>";
-$calculatedContent .= "<span id=\"clock\">Time</span>";
 $calculatedContent .= "</div>";
 $calculatedContent .= "<div id=\"PhilaAlertsIconsBlock\">";
 
