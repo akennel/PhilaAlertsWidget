@@ -15,6 +15,7 @@ $topOfMessage = <<<EOM
         var currentTime = new Date();
         var hours = currentTime.getHours();
         var minutes = currentTime.getMinutes();
+        var weekDay = 
 
         //add 0 to beginning of minutes/seconds
         // ? - returns value before before : if true or after : if false (if statement shorthand)
@@ -36,6 +37,16 @@ $topOfMessage = <<<EOM
 <script type="text/javascript">
    function updateDate(){
 		var currentTime = new Date();
+        
+        var weekday = new Array(7);
+            weekday[0]=  "Sunday";
+            weekday[1] = "Monday";
+            weekday[2] = "Tuesday";
+            weekday[3] = "Wednesday";
+            weekday[4] = "Thursday";
+            weekday[5] = "Friday";
+            weekday[6] = "Saturday";
+        
         var month_name=new Array(12);
          month_name[0]="January"
          month_name[1]="February"
@@ -49,7 +60,7 @@ $topOfMessage = <<<EOM
          month_name[9]="October"
          month_name[10]="November"
          month_name[11]="December";
-		 var currentDateString = month_name[currentTime.getMonth()]+" "+currentTime.getDate()+", "+currentTime.getFullYear();
+		 var currentDateString =  weekday[currentTime.getDay()] + ", " + month_name[currentTime.getMonth()]+" "+currentTime.getDate()+", "+currentTime.getFullYear();
 		 var dateNode = document.getElementById("date");
 		 document.getElementById("date").firstChild.nodeValue = currentDateString;
    }
@@ -89,8 +100,8 @@ EOM;
 $calculatedContent = "<div id=\"PhilaAlertsWidget\">";
 $calculatedContent .= "<span id=\"PhilaAlertsMainWindow\">";
 $calculatedContent .= "<div id=\"PhilaAlertsDateTimeBlock\">";
-$calculatedContent .= "<span id=\"clock\">Time</span> - ";
-$calculatedContent .= "<span id=\"date\">Date</span>";
+$calculatedContent .= "<span id=\"date\">Date</span><br>";
+$calculatedContent .= "<span id=\"clock\">Time</span>";
 $calculatedContent .= "</div>";
 $calculatedContent .= "<div id=\"PhilaAlertsIconsBlock\">";
 
