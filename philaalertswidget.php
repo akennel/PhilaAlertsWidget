@@ -71,33 +71,12 @@ jQuery(document).ready(function($) {
 		setInterval('updateClock()', 1000);
     });
 </script>
-<style>
-
-.PhilaAlertIconActiveColor{
-color: red;
-font-size: 200%;
-}
-
-.PhilaAlertIconInactiveColor{
-color: green;
-font-size: 200%;
-}
-
-#PhilaAlertsDateBlock{
-float:left;
-}
-
-#PhilaAlertsIconBlock{
-float:right;
-}
-
-</style>
 
 <body>
 
 EOM;
 
-$calculatedContent = "<div id=\"PhilaAlertsWidget\">";
+$calculatedContent = "<div id=\"PhilaAlertsWidget\" class=\"clearfix\">";
 $calculatedContent .= "<span id=\"PhilaAlertsMainWindow\">";
 $calculatedContent .= "<div id=\"PhilaAlertsDateTimeBlock\">";
 $calculatedContent .= "<span id=\"date\">Date</span><br>";
@@ -106,31 +85,31 @@ $calculatedContent .= "</div>";
 $calculatedContent .= "<div id=\"PhilaAlertsIconsBlock\">";
 
 if (CheckForActiveAlerts("Weather Alert")) {
-$calculatedContent .= "<a href=\"http://alpha.phila.gov/Weather-Alerts\"><span class=\"glyphicon glyphicon-cloud PhilaAlertIconActiveColor\"></span></a>";
+$calculatedContent .= "<a href=\"http://alpha.phila.gov/Weather-Alerts\"><span class=\"weather-alert active-alert\">Weather Alerts</span></a>";
 }
 else{
-$calculatedContent .= "<a href=\"http://alpha.phila.gov/Weather-Alerts\"><span class=\"glyphicon glyphicon-cloud PhilaAlertIconInactiveColor\"></span></a>";
+$calculatedContent .= "<a href=\"http://alpha.phila.gov/Weather-Alerts\"><span class=\"weather-alert\">Weather Alerts</span></a>";
 }
 
 if (CheckForActiveAlerts("Transit Alert")) {
-$calculatedContent .= "<a href=\"http://www.septa.org/realtime/status/system-status.shtml\"><span class=\"glyphicon glyphicon-plane PhilaAlertIconActiveColor\"></span></a>";
+$calculatedContent .= "<a href=\"http://www.septa.org/realtime/status/system-status.shtml\"><span class=\"transit-alert active-alert\">Transit</span></a>";
 }
 else{
-$calculatedContent .= "<a href=\"http://www.septa.org/realtime/status/system-status.shtml\"><span class=\"glyphicon glyphicon-plane PhilaAlertIconInactiveColor\"></span></a>";
+$calculatedContent .= "<a href=\"http://www.septa.org/realtime/status/system-status.shtml\"><span class=\"transit-alert\">Transit</span></a>";
 }
 
 if (CheckForActiveAlerts("Trash Collection Alert")) {
-$calculatedContent .= "<a href=\"http://www.philadelphiastreets.com/sanitation/residential/collection-schedules\"><span class=\"glyphicon glyphicon-trash PhilaAlertIconActiveColor\"></span></a>";
+$calculatedContent .= "<a href=\"http://www.philadelphiastreets.com/sanitation/residential/collection-schedules\"><span class=\"trash-alert active-alert\">Collection</span></a>";
 }
 else{
-$calculatedContent .= "<a href=\"http://www.philadelphiastreets.com/sanitation/residential/collection-schedules\"><span class=\"glyphicon glyphicon-trash PhilaAlertIconInactiveColor\"></span></a>";
+$calculatedContent .= "<a href=\"http://www.philadelphiastreets.com/sanitation/residential/collection-schedules\"><span class=\"trash-alert\">Collection</span></a>";
 }
 
 if (CheckForActiveAlerts("Street Closure Alert")) {
-$calculatedContent .= "<a href=\"http://www.phila.gov/MDO/SpecialEvents/Pages/StreetClosures.aspx\"><span class=\"glyphicon glyphicon-road PhilaAlertIconActiveColor\"></span></a>";
+$calculatedContent .= "<a href=\"http://www.phila.gov/MDO/SpecialEvents/Pages/StreetClosures.aspx\"><span class=\"street-alert active-alert\">Closures</span></a>";
 }
 else{
-$calculatedContent .= "<a href=\"http://www.phila.gov/MDO/SpecialEvents/Pages/StreetClosures.aspx\"><span class=\"glyphicon glyphicon-road PhilaAlertIconInactiveColor\"></span></a>";
+$calculatedContent .= "<a href=\"http://www.phila.gov/MDO/SpecialEvents/Pages/StreetClosures.aspx\"><span class=\"street-alert\">Closures</span></a>";
 }
 
 $calculatedContent .= "</div>";
