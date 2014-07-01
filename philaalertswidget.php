@@ -106,10 +106,10 @@ $calculatedContent .= "<a href=\"http://www.philadelphiastreets.com/sanitation/r
 }
 
 if (CheckForActiveAlerts("Street Closure Alert")) {
-$calculatedContent .= "<a href=\"http://www.phila.gov/MDO/SpecialEvents/Pages/StreetClosures.aspx\"><span class=\"street-alert active-alert\">Closures</span></a>";
+$calculatedContent .= "<a href=\"http://www.phila.gov/map#id=d1191d5e3e1d4ab29588c5159d7e0772\"><span class=\"street-alert active-alert\">Closures</span></a>";
 }
 else{
-$calculatedContent .= "<a href=\"http://www.phila.gov/MDO/SpecialEvents/Pages/StreetClosures.aspx\"><span class=\"street-alert\">Closures</span></a>";
+$calculatedContent .= "<a href=\"http://www.phila.gov/map#id=d1191d5e3e1d4ab29588c5159d7e0772\"><span class=\"street-alert\">Closures</span></a>";
 }
 
 $calculatedContent .= "</div>";
