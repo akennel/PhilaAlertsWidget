@@ -76,42 +76,49 @@ jQuery(document).ready(function($) {
 
 EOM;
 
-$calculatedContent = "<div id=\"PhilaAlertsWidget\" class=\"clearfix\">";
+$calculatedContent = "<div id=\"PhilaAlertsWidget\">";
 $calculatedContent .= "<span id=\"PhilaAlertsMainWindow\">";
-$calculatedContent .= "<div id=\"PhilaAlertsDateTimeBlock\">";
-$calculatedContent .= "<span id=\"date\">Date</span><br>";
-$calculatedContent .= "<span id=\"clock\">Time</span>";
+$calculatedContent .= "<div id=\"row\">";
+$calculatedContent .= "<div id=\"PhilaAlertsDateTimeBlock\" class=\"col-lg-6 hidden-xs\">";
+$calculatedContent .= "<span id=\"clock\">Time</span> - ";
+$calculatedContent .= "<span id=\"date\">Date</span>";
 $calculatedContent .= "</div>";
+$calculatedContent .= "<div class=\"col-lg-4 col-xs-24 alerts\" >";
+$calculatedContent .= "Alerts"; 
+$calculatedContent .= "</div>";
+$calculatedContent .= "<div class=\"col-lg-14  col-xs-24\">";
 $calculatedContent .= "<div id=\"PhilaAlertsIconsBlock\">";
 
 if (CheckForActiveAlerts("Weather Alert")) {
-$calculatedContent .= "<a href=\"http://alpha.phila.gov/Weather-Alerts\"><span class=\"weather-alert active-alert\">Weather Alerts</span></a>";
+$calculatedContent .= "<a href=\"http://alpha.phila.gov/Weather-Alerts\"><span class=\"weather-alert active-alert\"><span class=\"hidden-xs\">Weather</span></span></a>";
 }
 else{
-$calculatedContent .= "<a href=\"http://alpha.phila.gov/Weather-Alerts\"><span class=\"weather-alert\">Weather Alerts</span></a>";
+$calculatedContent .= "<a href=\"http://alpha.phila.gov/Weather-Alerts\"><span class=\"weather-alert\"><span class=\"hidden-xs\">Weather</span></span></a>";
 }
 
 if (CheckForActiveAlerts("Transit Alert")) {
-$calculatedContent .= "<a href=\"http://www.septa.org/realtime/status/system-status.shtml\"><span class=\"transit-alert active-alert\">Transit</span></a>";
+$calculatedContent .= "<a href=\"http://www.septa.org/realtime/status/system-status.shtml\"><span class=\"transit-alert active-alert\"><span class=\"hidden-xs\">Transit</span></span></a>";
 }
 else{
-$calculatedContent .= "<a href=\"http://www.septa.org/realtime/status/system-status.shtml\"><span class=\"transit-alert\">Transit</span></a>";
+$calculatedContent .= "<a href=\"http://www.septa.org/realtime/status/system-status.shtml\"><span class=\"transit-alert\"><span class=\"hidden-xs\">Transit</span></span></a>";
 }
 
 if (CheckForActiveAlerts("Trash Collection Alert")) {
-$calculatedContent .= "<a href=\"http://www.philadelphiastreets.com/sanitation/residential/collection-schedules\"><span class=\"trash-alert active-alert\">Collection</span></a>";
+$calculatedContent .= "<a href=\"http://www.philadelphiastreets.com/sanitation/residential/collection-schedules\"><span class=\"trash-alert active-alert\"><span class=\"hidden-xs\">Collection</span></span></a>";
 }
 else{
-$calculatedContent .= "<a href=\"http://www.philadelphiastreets.com/sanitation/residential/collection-schedules\"><span class=\"trash-alert\">Collection</span></a>";
+$calculatedContent .= "<a href=\"http://www.philadelphiastreets.com/sanitation/residential/collection-schedules\"><span class=\"trash-alert\"><span class=\"hidden-xs\">Collection</span></span></a>";
 }
 
 if (CheckForActiveAlerts("Street Closure Alert")) {
-$calculatedContent .= "<a href=\"http://www.phila.gov/MDO/SpecialEvents/Pages/StreetClosures.aspx\"><span class=\"street-alert active-alert\">Closures</span></a>";
+$calculatedContent .= "<a href=\"http://www.phila.gov/MDO/SpecialEvents/Pages/StreetClosures.aspx\"><span class=\"street-alert active-alert\"><span class=\"hidden-xs\">Closures</span></span></a>";
 }
 else{
-$calculatedContent .= "<a href=\"http://www.phila.gov/MDO/SpecialEvents/Pages/StreetClosures.aspx\"><span class=\"street-alert\">Closures</span></a>";
+$calculatedContent .= "<a href=\"http://www.phila.gov/MDO/SpecialEvents/Pages/StreetClosures.aspx\"><span class=\"street-alert\"><span class=\"hidden-xs\">Closures</span></span></a>";
 }
 
+$calculatedContent .= "</div>";
+$calculatedContent .= "</div>";
 $calculatedContent .= "</div>";
 $calculatedContent .= "	</span>";
 $calculatedContent .= "</div>";
