@@ -78,16 +78,14 @@ EOM;
 
 $calculatedContent = "<div id=\"PhilaAlertsWidget\">";
 $calculatedContent .= "<span id=\"PhilaAlertsMainWindow\">";
-$calculatedContent .= "<div id=\"row\">";
-$calculatedContent .= "<div id=\"PhilaAlertsDateTimeBlock\" class=\"col-lg-6 hidden-xs\">";
+$calculatedContent .= "<div class=\"row no-gutter\">";
+$calculatedContent .= "<div id=\"PhilaAlertsDateTimeBlock\" class=\"col-md-8 hidden-xs hidden-sm\">";
 $calculatedContent .= "<span id=\"clock\">Time</span> - ";
 $calculatedContent .= "<span id=\"date\">Date</span>";
 $calculatedContent .= "</div>";
-$calculatedContent .= "<div class=\"col-lg-4 col-xs-24 alerts\" >";
-$calculatedContent .= "Alerts"; 
-$calculatedContent .= "</div>";
-$calculatedContent .= "<div class=\"col-lg-14  col-xs-24\">";
+$calculatedContent .= "<div class=\"col-md-16  col-xs-24\">";
 $calculatedContent .= "<div id=\"PhilaAlertsIconsBlock\">";
+$calculatedContent .= "<h1 class=\"alerts\">Alerts:</h1>";
 
 if (CheckForActiveAlerts("Weather Alert")) {
 $calculatedContent .= "<a href=\"http://alpha.phila.gov/Weather-Alerts\"><span class=\"weather-alert active-alert\"><span class=\"hidden-xs\">Weather</span></span></a>";
