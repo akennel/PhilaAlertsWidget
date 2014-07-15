@@ -85,7 +85,7 @@ $calculatedContent .= "<span id=\"date\">Date</span>";
 $calculatedContent .= "</div>";
 $calculatedContent .= "<div class=\"col-md-16  col-xs-24\">";
 $calculatedContent .= "<div id=\"PhilaAlertsIconsBlock\">";
-$calculatedContent .= "<h1 class=\"alerts\">Alerts:</h1>";
+$calculatedContent .= "<h1 class=\"alerts hidden-xs\">Alerts:</h1>";
 
 if (CheckForActiveAlerts("Weather Alert")) {
 $calculatedContent .= "<a href=\"http://alpha.phila.gov/Weather-Alerts\"><span class=\"weather-alert active-alert\"><span class=\"alert-text\">Weather</span></span></a>";
