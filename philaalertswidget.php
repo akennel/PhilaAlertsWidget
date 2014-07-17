@@ -78,7 +78,7 @@ EOM;
 
 $calculatedContent = "<div id=\"PhilaAlertsWidget\">";
 $calculatedContent .= "<span id=\"PhilaAlertsMainWindow\">";
-$calculatedContent .= "<div class=\"row\">";
+$calculatedContent .= "<div class=\"row no-gutter\">";
 $calculatedContent .= "<div id=\"PhilaAlertsDateTimeBlock\" class=\"col-md-8 hidden-xs hidden-sm\">";
 $calculatedContent .= "<span id=\"clock\">Time</span> - ";
 $calculatedContent .= "<span id=\"date\">Date</span>";
