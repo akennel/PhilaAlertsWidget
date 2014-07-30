@@ -342,7 +342,7 @@ function philaAlertWidgetGetStartingWeather(){
 	$weatherIcon = "<i class=\"wi wi-day-sunny-overcast\"></i>";
 	} 
 	
-	$weatherIcon .= " " . $currentWeatherTemp . " &#xb0; ";
+	$weatherIcon .= " " . $currentWeatherTemp . "&#xb0;";
 	
 	return $weatherIcon;
 }
