@@ -10,6 +10,109 @@ add_shortcode('PhilaAlertsWidget', 'philaAlertsWidget_handler');
 
 function philaAlertsWidget_handler(){
 $topOfMessage = <<<EOM
+<link rel="stylesheet" type="text/css" href="wp-content/plugins/PhilaAlertsWidget/weather-icons/css/weather-icons.css">
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+	function updateWeather(){
+		var weatherFeedURL = "http://forecast.weather.gov/MapClick.php?lat=39.9524909&lon=-75.163589&FcstType=json";
+
+		$.ajax({
+			type: "POST",
+			dataType: 'jsonp',
+			url: weatherFeedURL,
+			crossDomain : true,
+			})
+	    	.done(function( data ) {
+	    		var $weatherIcon = "";
+	    		var $currentWeather = data.currentobservation.Weather.toLowerCase();
+	    		
+	    		//Looks like string.contains isn't supported in older versions of javascript. This should do the same.
+	    		//It returns a position of -1 if the string isn't found.
+	    		if ($currentWeather.indexOf("sunny") != -1)
+	    		{
+	    			$weatherIcon = "<i class=\"wi wi-day-sunny\"></i>"
+	    		}
+	    		else if ($currentWeather.indexOf("clear") != -1)
+	    		{
+	    			$weatherIcon = "<i class=\"wi wi-day-sunny\"></i>"
+	    		}
+	    		else if ($currentWeather.indexOf("cloud") != -1)
+	    		{
+	    			$weatherIcon = "<i class=\"wi wi-day-cloudy\"></i>"
+	    		}
+	    		else if ($currentWeather.indexOf("overcast") != -1)
+	    		{
+	    			$weatherIcon = "<i class=\"wi wi-cloudy\"></i>"
+	    		}
+	    		else if ($currentWeather.indexOf("freezing") != -1)
+	    		{
+	    			$weatherIcon = "<i class=\"wi wi-rain-mix\"></i>"
+	    		}
+	    		else if ($currentWeather.indexOf("rain") != -1)
+	    		{
+	    			$weatherIcon = "<i class=\"wi wi-rain\"></i>"
+	    		}
+	    		else if ($currentWeather.indexOf("drizzle") != -1)
+	    		{
+	    			$weatherIcon = "<i class=\"wi wi-sprinkle\"></i>"
+	    		}
+	    		else if ($currentWeather.indexOf("blizzard") != -1)
+	    		{
+	    			$weatherIcon = "<i class=\"wi wi-snowflake-cold\"></i>"
+	    		}
+	    		else if ($currentWeather.indexOf("fog") != -1)
+	    		{
+	    			$weatherIcon = "<i class=\"wi wi-fog\"></i>"
+	    		}
+	    		else if ($currentWeather.indexOf("haze") != -1)
+	    		{
+	    			$weatherIcon = "<i class=\"wi wi-day-fog\"></i>"
+	    		}
+	    		else if ($currentWeather.indexOf("snow") != -1)
+	    		{
+	    			$weatherIcon = "<i class=\"wi wi-snow\"></i>"
+	    		}
+	    		else if ($currentWeather.indexOf("ice") != -1)
+	    		{
+	    			$weatherIcon = "<i class=\"wi wi-rain-mix\"></i>"
+	    		}
+	    		else if ($currentWeather.indexOf("flurries") != -1)
+	    		{
+	    			$weatherIcon = "<i class=\"wi wi-snow\"></i>"
+	    		}
+	    		else if ($currentWeather.indexOf("sleet") != -1)
+	    		{
+	    			$weatherIcon = "<i class=\"wi wi-rain-mix\"></i>"
+	    		}
+	    		else if ($currentWeather.indexOf("wintry") != -1)
+	    		{
+	    			$weatherIcon = "<i class=\"wi wi-rain-mix\"></i>"
+	    		}
+	    		else if ($currentWeather.indexOf("hail") != -1)
+	    		{
+	    			$weatherIcon = "<i class=\"wi wi-hail\"></i>"
+	    		}
+	    		else if ($currentWeather.indexOf("shower") != -1)
+	    		{
+	    			$weatherIcon = "<i class=\"wi wi-sprinkle\"></i>"
+	    		}
+	    		else if ($currentWeather.indexOf("storm") != -1)
+	    		{
+	    			$weatherIcon = "<i class=\"wi wi-thunderstorm\"></i>"
+	    		}
+			    else
+			    {
+				$weatherIcon = "<i class=\"wi wi-day-sunny-overcast\"></i>"
+				}  		
+	    		
+				$("#alert-text").html(data.currentobservation.Temp + "&#xb0; " + $weatherIcon);
+	    	})
+	    	.fail( function(xhr, textStatus, errorThrown) {
+	        	alert(xhr.responseText);
+	        	alert(textStatus);
+	    	});
+	}
+</script>
 <script type="text/javascript">
    function updateClock(){
         var currentTime = new Date();
@@ -69,12 +172,15 @@ $topOfMessage = <<<EOM
 jQuery(document).ready(function($) {	
 		updateDate();
 		setInterval('updateClock()', 1000);
+		updateWeather();
     });
 </script>
 
 <body>
 
 EOM;
+
+$weatherInfo = philaAlertWidgetGetStartingWeather();
 
 $calculatedContent = "<div id=\"PhilaAlertsWidget\">";
 $calculatedContent .= "<span id=\"PhilaAlertsMainWindow\">";
@@ -88,10 +194,10 @@ $calculatedContent .= "<div id=\"PhilaAlertsIconsBlock\">";
 $calculatedContent .= "<h1 class=\"alerts hidden-xs\">Alerts:</h1>";
 
 if (CheckForActiveAlerts("Weather Alert")) {
-$calculatedContent .= "<a href=\"http://alpha.phila.gov/Weather-Alerts\"><span class=\"weather-alert active-alert\"><span class=\"alert-text\">Weather</span></span></a>";
+$calculatedContent .= "<a href=\"http://alpha.phila.gov/Weather-Alerts\"><span class=\"weather-alert active-alert\"><span id=\"alert-text\">" . $weatherInfo . "</span></span></a>";
 }
 else{
-$calculatedContent .= "<a href=\"http://alpha.phila.gov/Weather-Alerts\"><span class=\"weather-alert\"><span class=\"alert-text\">Weather</span></span></a>";
+$calculatedContent .= "<a href=\"http://alpha.phila.gov/Weather-Alerts\"><span class=\"weather-alert\"><span id=\"alert-text\">" . $weatherInfo . "</span></span></a>";
 }
 
 if (CheckForActiveAlerts("Transit Alert")) {
@@ -140,6 +246,130 @@ function CheckForActiveAlerts($tagName) {
 	}
 	
 	return $activeAlert;
+}
+
+function philaAlertWidgetGetStartingWeather(){
+	$weatherIcon = "";
+	$weatherFeedURL = "http://forecast.weather.gov/MapClick.php?lat=39.9524909&lon=-75.163589&FcstType=json";
+	
+	//$data = PhilaWeaterGetFeed($currentURL);)
+	$data = PhilaWeatherGetFeedFromProxy($weatherFeedURL);
+	//foreach ($data->currentobservation->Weather as $item)
+	//{
+	//	$array_item = (array) $item;
+	//	
+	//	$title = (array) $item->title;		
+	//	$start = $array_item['gd$when'][0]->startTime;			
+	//	
+	//	$eventArray[] = array('title' => $title['$t'], 'startDate' => $start);
+	//}
+	
+	$currentWeatherDesc = $data->currentobservation->Weather;
+	$currentWeatherTemp = $data->currentobservation->Temp;
+	
+	$currentWeather = strtolower($currentWeatherDesc);
+	
+	if (strpos($currentWeather, 'sunny') !== FALSE)	
+	{
+		$weatherIcon = "<i class=\"wi wi-day-sunny\"></i>";
+	}
+	elseif (strpos($currentWeather, 'clear') !== FALSE)
+	{
+		$weatherIcon = "<i class=\"wi wi-day-sunny\"></i>";
+	}
+	else if (strpos($currentWeather, 'cloud') !== FALSE)
+	{
+		$weatherIcon = "<i class=\"wi wi-day-cloudy\"></i>";
+	}
+	else if (strpos($currentWeather, 'overcast') !== FALSE)
+	{
+		$weatherIcon = "<i class=\"wi wi-cloudy\"></i>";
+	}
+	else if (strpos($currentWeather, 'freezing') !== FALSE)
+	{
+		$weatherIcon = "<i class=\"wi wi-rain-mix\"></i>";
+	}
+	else if (strpos($currentWeather, 'rain') !== FALSE)
+	{
+		$weatherIcon = "<i class=\"wi wi-rain\"></i>";
+	}
+	else if (strpos($currentWeather, 'drizzle') !== FALSE)
+	{
+		$weatherIcon = "<i class=\"wi wi-sprinkle\"></i>";
+	}
+	else if (strpos($currentWeather, 'blizzard') !== FALSE)
+	{
+		$weatherIcon = "<i class=\"wi wi-snowflake-cold\"></i>";
+	}
+	else if (strpos($currentWeather, 'fog') !== FALSE)
+	{
+		$weatherIcon = "<i class=\"wi wi-fog\"></i>";
+	}
+	else if (strpos($currentWeather, 'haze') !== FALSE)
+	{
+		$weatherIcon = "<i class=\"wi wi-day-fog\"></i>";
+	}
+	else if (strpos($currentWeather, 'snow') !== FALSE)
+	{
+		$weatherIcon = "<i class=\"wi wi-snow\"></i>";
+	}
+	else if (strpos($currentWeather, 'ice') !== FALSE)
+	{
+		$weatherIcon = "<i class=\"wi wi-rain-mix\"></i>";
+	}
+	else if (strpos($currentWeather, 'flurries') !== FALSE)
+	{
+		$weatherIcon = "<i class=\"wi wi-snow\"></i>";
+	}
+	else if (strpos($currentWeather, 'sleet') !== FALSE)
+	{
+		$weatherIcon = "<i class=\"wi wi-rain-mix\"></i>";
+	}
+	else if (strpos($currentWeather, 'wintry') !== FALSE)
+	{
+		$weatherIcon = "<i class=\"wi wi-rain-mix\"></i>";
+	}
+	else if (strpos($currentWeather, 'hail') !== FALSE)
+	{
+		$weatherIcon = "<i class=\"wi wi-hail\"></i>";
+	}
+	else if (strpos($currentWeather, 'shower') !== FALSE)
+	{
+		$weatherIcon = "<i class=\"wi wi-sprinkle\"></i>";
+	}
+	else if (strpos($currentWeather, 'storm') !== FALSE)
+	{
+		$weatherIcon = "<i class=\"wi wi-thunderstorm\"></i>";
+	}
+    else
+    {
+	$weatherIcon = "<i class=\"wi wi-day-sunny-overcast\"></i>";
+	} 
+	
+	$weatherIcon .= $currentWeatherTemp . "&#xb0; ";
+	
+	return $weatherIcon;
+}
+
+function PhilaWeatherGetFeedFromProxy($url){
+//Use local proxy server when runnign on dev machine
+$aContext = array(
+    'http' => array(
+        'proxy' => 'tcp://127.0.0.1:3128',
+        'request_fulluri' => true,
+    ),
+);
+$cxContext = stream_context_create($aContext);
+$data = json_decode(file_get_contents($url, True, $cxContext));
+
+return $data;
+}
+
+function PhilaWeatherGetFeed($url){
+//When running on server, no proxy is required
+$data = json_decode(file_get_contents($url, True));
+
+return $data;
 }
 
 function philaAlertsWidget($args, $instance) { // widget sidebar output
