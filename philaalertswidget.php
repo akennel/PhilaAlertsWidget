@@ -106,7 +106,7 @@ $topOfMessage = <<<EOM
 				weatherIcon = "<i class=\"wi wi-day-sunny-overcast\"></i>"
 				}  		
 	    		
-				$("#alert-text").html(data.currentobservation.Temp + "&#xb0; " + $weatherIcon);
+				$("#alert-text").html(data.currentobservation.Temp + "&#xb0; " + weatherIcon);
 	    	})
 	    	.fail( function(xhr, textStatus, errorThrown) {
 	        	alert(xhr.responseText);
