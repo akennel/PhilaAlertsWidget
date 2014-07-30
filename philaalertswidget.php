@@ -252,7 +252,7 @@ function philaAlertWidgetGetStartingWeather(){
 	$weatherIcon = "";
 	$weatherFeedURL = "http://forecast.weather.gov/MapClick.php?lat=39.9524909&lon=-75.163589&FcstType=json";
 	
-	$data = PhilaWeatherGetFeed($weatherFeedURL);)
+	$data = PhilaWeatherGetFeed($weatherFeedURL);
 	//$data = PhilaWeatherGetFeedFromProxy($weatherFeedURL);
 	//foreach ($data->currentobservation->Weather as $item)
 	//{
