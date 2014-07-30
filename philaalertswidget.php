@@ -24,86 +24,86 @@ $topOfMessage = <<<EOM
 			crossDomain : true,
 			})
 	    	.done(function( data ) {
-	    		var $weatherIcon = "";
-	    		var $currentWeather = data.currentobservation.Weather.toLowerCase();
+	    		var weatherIcon = "";
+	    		var currentWeather = data.currentobservation.Weather.toLowerCase();
 	    		
 	    		//Looks like string.contains isn't supported in older versions of javascript. This should do the same.
 	    		//It returns a position of -1 if the string isn't found.
-	    		if ($currentWeather.indexOf("sunny") != -1)
+	    		if (currentWeather.indexOf("sunny") != -1)
 	    		{
-	    			$weatherIcon = "<i class=\"wi wi-day-sunny\"></i>"
+	    			weatherIcon = "<i class=\"wi wi-day-sunny\"></i>"
 	    		}
-	    		else if ($currentWeather.indexOf("clear") != -1)
+	    		else if (currentWeather.indexOf("clear") != -1)
 	    		{
-	    			$weatherIcon = "<i class=\"wi wi-day-sunny\"></i>"
+	    			weatherIcon = "<i class=\"wi wi-day-sunny\"></i>"
 	    		}
-	    		else if ($currentWeather.indexOf("cloud") != -1)
+	    		else if (currentWeather.indexOf("cloud") != -1)
 	    		{
-	    			$weatherIcon = "<i class=\"wi wi-day-cloudy\"></i>"
+	    			weatherIcon = "<i class=\"wi wi-day-cloudy\"></i>"
 	    		}
-	    		else if ($currentWeather.indexOf("overcast") != -1)
+	    		else if (currentWeather.indexOf("overcast") != -1)
 	    		{
-	    			$weatherIcon = "<i class=\"wi wi-cloudy\"></i>"
+	    			weatherIcon = "<i class=\"wi wi-cloudy\"></i>"
 	    		}
-	    		else if ($currentWeather.indexOf("freezing") != -1)
+	    		else if (currentWeather.indexOf("freezing") != -1)
 	    		{
-	    			$weatherIcon = "<i class=\"wi wi-rain-mix\"></i>"
+	    			weatherIcon = "<i class=\"wi wi-rain-mix\"></i>"
 	    		}
-	    		else if ($currentWeather.indexOf("rain") != -1)
+	    		else if (currentWeather.indexOf("rain") != -1)
 	    		{
-	    			$weatherIcon = "<i class=\"wi wi-rain\"></i>"
+	    			weatherIcon = "<i class=\"wi wi-rain\"></i>"
 	    		}
-	    		else if ($currentWeather.indexOf("drizzle") != -1)
+	    		else if (currentWeather.indexOf("drizzle") != -1)
 	    		{
-	    			$weatherIcon = "<i class=\"wi wi-sprinkle\"></i>"
+	    			weatherIcon = "<i class=\"wi wi-sprinkle\"></i>"
 	    		}
-	    		else if ($currentWeather.indexOf("blizzard") != -1)
+	    		else if (currentWeather.indexOf("blizzard") != -1)
 	    		{
-	    			$weatherIcon = "<i class=\"wi wi-snowflake-cold\"></i>"
+	    			weatherIcon = "<i class=\"wi wi-snowflake-cold\"></i>"
 	    		}
-	    		else if ($currentWeather.indexOf("fog") != -1)
+	    		else if (currentWeather.indexOf("fog") != -1)
 	    		{
-	    			$weatherIcon = "<i class=\"wi wi-fog\"></i>"
+	    			weatherIcon = "<i class=\"wi wi-fog\"></i>"
 	    		}
-	    		else if ($currentWeather.indexOf("haze") != -1)
+	    		else if (currentWeather.indexOf("haze") != -1)
 	    		{
-	    			$weatherIcon = "<i class=\"wi wi-day-fog\"></i>"
+	    			weatherIcon = "<i class=\"wi wi-day-fog\"></i>"
 	    		}
-	    		else if ($currentWeather.indexOf("snow") != -1)
+	    		else if (currentWeather.indexOf("snow") != -1)
 	    		{
-	    			$weatherIcon = "<i class=\"wi wi-snow\"></i>"
+	    			weatherIcon = "<i class=\"wi wi-snow\"></i>"
 	    		}
-	    		else if ($currentWeather.indexOf("ice") != -1)
+	    		else if (currentWeather.indexOf("ice") != -1)
 	    		{
-	    			$weatherIcon = "<i class=\"wi wi-rain-mix\"></i>"
+	    			weatherIcon = "<i class=\"wi wi-rain-mix\"></i>"
 	    		}
-	    		else if ($currentWeather.indexOf("flurries") != -1)
+	    		else if (currentWeather.indexOf("flurries") != -1)
 	    		{
-	    			$weatherIcon = "<i class=\"wi wi-snow\"></i>"
+	    			weatherIcon = "<i class=\"wi wi-snow\"></i>"
 	    		}
-	    		else if ($currentWeather.indexOf("sleet") != -1)
+	    		else if (currentWeather.indexOf("sleet") != -1)
 	    		{
-	    			$weatherIcon = "<i class=\"wi wi-rain-mix\"></i>"
+	    			weatherIcon = "<i class=\"wi wi-rain-mix\"></i>"
 	    		}
-	    		else if ($currentWeather.indexOf("wintry") != -1)
+	    		else if (currentWeather.indexOf("wintry") != -1)
 	    		{
-	    			$weatherIcon = "<i class=\"wi wi-rain-mix\"></i>"
+	    			weatherIcon = "<i class=\"wi wi-rain-mix\"></i>"
 	    		}
-	    		else if ($currentWeather.indexOf("hail") != -1)
+	    		else if (currentWeather.indexOf("hail") != -1)
 	    		{
-	    			$weatherIcon = "<i class=\"wi wi-hail\"></i>"
+	    			weatherIcon = "<i class=\"wi wi-hail\"></i>"
 	    		}
-	    		else if ($currentWeather.indexOf("shower") != -1)
+	    		else if (currentWeather.indexOf("shower") != -1)
 	    		{
-	    			$weatherIcon = "<i class=\"wi wi-sprinkle\"></i>"
+	    			weatherIcon = "<i class=\"wi wi-sprinkle\"></i>"
 	    		}
-	    		else if ($currentWeather.indexOf("storm") != -1)
+	    		else if (currentWeather.indexOf("storm") != -1)
 	    		{
-	    			$weatherIcon = "<i class=\"wi wi-thunderstorm\"></i>"
+	    			weatherIcon = "<i class=\"wi wi-thunderstorm\"></i>"
 	    		}
 			    else
 			    {
-				$weatherIcon = "<i class=\"wi wi-day-sunny-overcast\"></i>"
+				weatherIcon = "<i class=\"wi wi-day-sunny-overcast\"></i>"
 				}  		
 	    		
 				$("#alert-text").html(data.currentobservation.Temp + "&#xb0; " + $weatherIcon);
