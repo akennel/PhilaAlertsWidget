@@ -111,8 +111,6 @@ $topOfMessage = <<<EOM
 	        	alert(textStatus);
 	    	});
 	}
-</script>
-<script type="text/javascript">
    function updateClock(){
         var currentTime = new Date();
         var hours = currentTime.getHours();
@@ -135,8 +133,6 @@ $topOfMessage = <<<EOM
         //add the clock to the ID this needs the &nbsp; to work - not sure why
         document.getElementById("clock").firstChild.nodeValue = currentTimeString;
 	}
-</script>
-<script type="text/javascript">
    function updateDate(){
 		var currentTime = new Date();
         
@@ -166,8 +162,6 @@ $topOfMessage = <<<EOM
 		 var dateNode = document.getElementById("date");
 		 document.getElementById("date").firstChild.nodeValue = currentDateString;
    }
-</script>   
-<script type="text/javascript">
 jQuery(document).ready(function($) {	
 		updateDate();
 		setInterval('updateClock()', 1000);
