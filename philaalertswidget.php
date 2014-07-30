@@ -107,7 +107,7 @@ $topOfMessage = <<<EOM
 				weatherIcon = "<i class=\"wi wi-day-sunny-overcast\"></i>"
 				}  		
 	    		
-				$("#alert-text").html(data.currentobservation.Temp + "&#xb0; " + weatherIcon);
+				$("#alert-text").html(weatherIcon + " &#xb0; " + data.currentobservation.Temp);
 	    	})
 	    	.fail( function(xhr, textStatus, errorThrown) {
 	        	alert(xhr.responseText);
@@ -342,7 +342,7 @@ function philaAlertWidgetGetStartingWeather(){
 	$weatherIcon = "<i class=\"wi wi-day-sunny-overcast\"></i>";
 	} 
 	
-	$weatherIcon .= $currentWeatherTemp . "&#xb0; ";
+	$weatherIcon .= $currentWeatherTemp . " &#xb0; ";
 	
 	return $weatherIcon;
 }
