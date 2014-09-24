@@ -155,4 +155,4 @@ jQuery(document).ready(function($) {
 			updateWeather();
 		});
 	
-}
+});
