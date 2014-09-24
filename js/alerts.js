@@ -124,7 +124,9 @@ jQuery(document).ready(function($) {
 			var currentTimeString = hours + ":" + minutes + " " + timeOfDay;
 
 			//add the clock to the ID this needs the &nbsp; to work - not sure why
-			document.getElementById("clock").firstChild.nodeValue = currentTimeString;
+			window.onload = function() {
+				document.getElementById("clock").firstChild.nodeValue = currentTimeString;
+			}
 		}
 	   function updateDate(){
 			var currentTime = new Date();
@@ -153,5 +155,9 @@ jQuery(document).ready(function($) {
 			 month_name[11]="December";
 			 var currentDateString =  weekday[currentTime.getDay()] + ", " + month_name[currentTime.getMonth()]+" "+currentTime.getDate()+", "+currentTime.getFullYear();
 			 var dateNode = document.getElementById("date");
-			 document.getElementById("date").firstChild.nodeValue = currentDateString;
+			
+		   //make sure the div exists before we write to it
+		    window.onload = function() {
+		   		document.getElementById("date").firstChild.nodeValue = currentDateString;
+			}
 	   }	
