@@ -98,11 +98,12 @@ jQuery(document).ready(function($) {
 					alert(textStatus);
 				});
 		}
+		updateWeather();
 });
 	
 		updateDate();
 		setInterval('updateClock()', 1000);
-		updateWeather();
+
 	
 	   function updateClock(){
 			var currentTime = new Date();
