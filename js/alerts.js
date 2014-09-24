@@ -151,11 +151,11 @@ jQuery(document).ready(function($) {
 		   var currentDateString =  weekday[currentTime.getDay()] + ", " + month_name[currentTime.getMonth()]+" "+currentTime.getDate()+", "+currentTime.getFullYear();
 		   
 			 var dateNode = document.getElementById("date");
-			 dateNode.nodeValue = currentDateString;
+			 dateNode.firstChild.nodeValue = currentDateString;
 		
 	   }
 
 jQuery(document).ready(function($) {
 	updateDate();
 	setInterval('updateClock()', 1000);
-}
+});
