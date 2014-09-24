@@ -12,9 +12,6 @@ add_shortcode('PhilaAlertsWidget', 'philaAlertsWidget_handler');
 
 function philaAlertsWidget_handler(){
 $topOfMessage = <<<EOM
-
-<link rel="stylesheet" type="text/css" href="wp-content/plugins/PhilaAlertsWidget/weather-icons/css/weather-icons.css">
-
 EOM;
 
 $weatherInfo = philaAlertWidgetGetStartingWeather();
@@ -216,12 +213,16 @@ function philaAlertsWidget($args, $instance) { // widget sidebar output
   echo $after_widget; // post-widget code from theme
 }
 
-function alerts_bar() {
+add_action( 'wp_enqueue_scripts', 'theme_name_scripts' );
+
+function alerts_bar_scripts() {
+	wp_enqueue_style( 'weather-icons', plugins_url( 'weather-icons/css/weather-icons.min.css' , __FILE__ ) );
 	wp_enqueue_script(
 		'alerts',
 		plugins_url( '/js/alerts.js' , __FILE__ ),
-		array( 'jquery' )
+		array( 'jquery' ),
+		true
 	);
 }
 
-add_action( 'wp_enqueue_scripts', 'alerts_bar' );
+add_action( 'wp_enqueue_scripts', 'alerts_bar_scripts' );
