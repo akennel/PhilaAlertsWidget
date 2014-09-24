@@ -149,10 +149,9 @@ jQuery(document).ready(function($) {
 			 var dateNode = document.getElementById("date");
 			 document.getElementById("date").firstChild.nodeValue = currentDateString;
 	   }
-	jQuery(document).ready(function($) {	
-			updateDate();
-			setInterval('updateClock()', 1000);
-			updateWeather();
-		});
+	
+		updateDate();
+		setInterval('updateClock()', 1000);
+		updateWeather();
 	
 });

@@ -14,7 +14,6 @@ function philaAlertsWidget_handler(){
 $topOfMessage = <<<EOM
 
 <link rel="stylesheet" type="text/css" href="wp-content/plugins/PhilaAlertsWidget/weather-icons/css/weather-icons.css">
-<script type="text/javascript">
 
 EOM;
 
