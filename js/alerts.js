@@ -154,5 +154,8 @@ jQuery(document).ready(function($) {
 			 dateNode.nodeValue = currentDateString;
 		
 	   }
+
+jQuery(document).ready(function($) {
 	updateDate();
 	setInterval('updateClock()', 1000);
+}
