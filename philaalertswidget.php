@@ -13,7 +13,6 @@ $topOfMessage = <<<EOM
 
 
 <link rel="stylesheet" type="text/css" href="wp-content/plugins/PhilaAlertsWidget/weather-icons/css/weather-icons.css">
-<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script type="text/javascript">
 	function updateWeather(){
 		var weatherFeedURL = "http://forecast.weather.gov/MapClick.php?lat=39.9524909&lon=-75.163589&FcstType=json";
