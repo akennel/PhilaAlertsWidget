@@ -216,13 +216,15 @@ function philaAlertsWidget($args, $instance) { // widget sidebar output
 add_action( 'wp_enqueue_scripts', 'theme_name_scripts' );
 
 function alerts_bar_scripts() {
-	wp_enqueue_style( 'weather-icons', plugins_url( 'weather-icons/css/weather-icons.min.css' , __FILE__ ) );
-	wp_enqueue_script(
-		'alerts',
-		plugins_url( '/js/alerts.js' , __FILE__ ),
-		array( 'jquery' ),
-		true
-	);
+if( is_front_page() )	{
+		wp_enqueue_style( 'weather-icons', plugins_url( 'weather-icons/css/weather-icons.min.css' , __FILE__ ) );
+		wp_enqueue_script(
+			'alerts',
+			plugins_url( '/js/alerts.js' , __FILE__ ),
+			array( 'jquery' ),
+			true
+		);
+	}
 }
 
 add_action( 'wp_enqueue_scripts', 'alerts_bar_scripts' );
