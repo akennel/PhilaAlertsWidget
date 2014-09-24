@@ -98,6 +98,12 @@ jQuery(document).ready(function($) {
 					alert(textStatus);
 				});
 		}
+});
+	
+		updateDate();
+		setInterval('updateClock()', 1000);
+		updateWeather();
+	
 	   function updateClock(){
 			var currentTime = new Date();
 			var hours = currentTime.getHours();
@@ -148,10 +154,4 @@ jQuery(document).ready(function($) {
 			 var currentDateString =  weekday[currentTime.getDay()] + ", " + month_name[currentTime.getMonth()]+" "+currentTime.getDate()+", "+currentTime.getFullYear();
 			 var dateNode = document.getElementById("date");
 			 document.getElementById("date").firstChild.nodeValue = currentDateString;
-	   }
-	
-		updateDate();
-		setInterval('updateClock()', 1000);
-		updateWeather();
-	
-});
+	   }	
