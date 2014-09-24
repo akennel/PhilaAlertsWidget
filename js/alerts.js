@@ -151,7 +151,7 @@ jQuery(document).ready(function($) {
 		   var currentDateString =  weekday[currentTime.getDay()] + ", " + month_name[currentTime.getMonth()]+" "+currentTime.getDate()+", "+currentTime.getFullYear();
 		   
 			 var dateNode = document.getElementById("date");
-			 dateNode.firstChild.nodeValue = currentDateString;
+			 dateNode.nodeValue = currentDateString;
 		
 	   }
 	updateDate();
